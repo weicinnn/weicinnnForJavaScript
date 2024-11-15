@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>MFEE57_27_莊維昕_JavaScript作業</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+</head>
+<style>
+    body {
+        background: #c0bcbc;
+    }
+
+    /* 第七題 */
+    .model {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .model-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        max-width: 500px;
+    }
+
+    .close {
+        background: #FFC107;
+        width: 100px;
+        color: #FFF;
+        font-size: 28px;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .close:hover {
+        cursor: default;
+    }
+
+    /* 第八題 */
+    .wrapper {
+        width: 1296px;
+        margin: 0 auto;
+    }
+
+    .tabs {
+        font-size: 28px;
+        cursor: pointer;
+    }
+
+    .tabs a {
+        padding: 10px 20px;
+        margin-right: 5px;
+        text-decoration: none;
+        color: black;
+    }
+
+    .tabs a.active {
+        background: white;
+        border-bottom: 5px solid red;
+    }
+
+    .tab-content>div {
+        display: none;
+        padding: 20px;
+        font-size: 28px;
+    }
+
+    .tab-content>div.active {
+        display: block;
+        text-decoration: none;
+        color: black;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="my-2 p-2">
+            <h1>MFEE57_27_莊維昕_JavaScript作業 ( 共8題 )</h1>
+        </div>
+    </div>
+    <!-- 第一題 -->
+    <!-- 表單 輸入 輸出反向 18號function-text 有類似 -->
+    <div class="container">
+        <div class="my-2 p-2 bg-secondary-subtle rounded-4">
+            <div class="py-2">
+                <h2>1.設計一個反轉文字的函式，比如輸入 abcde，會得到 edcba</h2>
+                <input type="text" class="form-control mb-2" id="input" placeholder="在這輸入任意字串">
+                <input type="text" class="form-control" id="output" placeholder="上方輸入的內容將會反轉">
+            </div>
+        </div>
+    </div>
+    <script>
+        const input = document.querySelector("#input");
+        const output = document.querySelector("#output");
+
+        input.addEventListener("input", function () {
+            output.value = input.value.split('').reverse().join('');
+        });
+
+    </script>
+    <!-- 第二題 -->
+    <!-- 一開始沒東西 輸入值之後給對應的*-->
+    <div class="container">
+        <div class="my-2 p-2 bg-secondary-subtle rounded-4">
+            <div class="py-2">
+                <h2>2.設計一個函式 star(n) 輸入數字後 console 出對應數量的 *比如輸入 star(5)，會得到 *****</h2>
+                <input type="text" class="form-control mb-2" id="input2" placeholder="在這輸入任意數字後，下方將會得到對應的 * 數量">
+                <input type="text" class="form-control" id="output2" placeholder="這裡將會顯示上方數字所對應的 * 數量">
+            </div>
+        </div>
+    </div>
+    <script>
+        const input2 = document.querySelector("#input2");
+        const output2 = document.querySelector("#output2");
+
+        input2.addEventListener("input", function () {
+            let num = input2.value;
+            let star = "*".repeat(num);
+            console.log(star);
+            output2.value = star;
+        })
+
+    </script>
+    <!-- 第三題 -->
+    <!-- 檢查陣列中的值是否存在,講義155 好用的陣列處理方式 -->
+    <!-- some 檢查是否存在 有則停止不繼續後續元素 回傳true false -->
+    <div class="container">
+        <div class="my-2 p-2 bg-secondary-subtle rounded-4">
+            <div class="py-2">
+                <h2>3.透過迴圈檢查顯示一個使用者陣列內的使用者是否存在，存在的話顯示 XXX 存在，反之則顯示 XXX 不存在
+                    比如原始陣列：let people=["Tom", "John", "Lily", "Sara"];
+                    我要尋找May，如果存在就顯示「May 存在」，反之顯示「May 不存在」</h2>
+                <input type="text" class="form-control mb-2" id="input3"
+                    placeholder="在這輸入Tom, John, Lily, Sara, 或其他名稱後點擊送出">
+                <button class="btn btn-primary mb-2" id="send3">送出</button>
+                <input type="text" class="form-control" id="output3" placeholder="此欄將顯示上方輸入的人名是否存在">
+            </div>
+        </div>
+    </div>
+    <script>
+        const input3 = document.querySelector("#input3");
+        const send3 = document.querySelector("#send3");
+        const output3 = document.querySelector("#output3");
+        let people = ["Tom", "John", "Lily", "Sara"];
+
+        send3.addEventListener("click", function () {
+            let check = people.some(function (people) {
+                return people == input3.value;
+            })
+            if (check == true) {
+                output3.value = `${input3.value} 存在`;
+            }
+            else {
+                output3.value = `${input3.value} 不存在`;
+            }
+        })
+
+    </script>
+    <!-- 第四題 -->
+    <!-- 好用的陣列 講義158  0722 0723 -->
+    <div class="container">
+        <div class="my-2 p-2 bg-secondary-subtle rounded-4">
+            <div class="py-2">
+                <h2>4.寫一個函式，帶入兩個參數分別是一個陣列跟一個數字 n，回傳一個裡面有所有小於 n 的數的陣列。
+                    比如 findAllLess([1, 2, 3], 2) 正確回傳值：[1]</h2>
+                <input type="text" class="form-control mb-2" id="input4" placeholder="輸入參數1:例如 1, 2, 3 ( 至少3個數字 ) ">
+                <input type="text" class="form-control mb-2" id="input04" placeholder="輸入參數2:上方的數中的其中一個，完成後點擊送出">
+                <button class="btn btn-primary mb-2" id="send4">送出</button>
+                <input type="text" class="form-control" id="output4" placeholder="顯示參數1當中小於參數2所給的數字的所有值">
+            </div>
+        </div>
+    </div>
+    <script>
+        const input4 = document.querySelector("#input4");
+        const input04 = document.querySelector("#input04");
+        const send4 = document.querySelector("#send4");
+        const output4 = document.querySelector("#output4");
+
+        send4.addEventListener("click", function () {
+            let num = input4.value.split(",");
+            let check = Number(input04.value);
+            let newNum = num.filter(function (n) {
+                return n < check;
+            })
+            console.log(newNum);
+            output4.value = newNum;
+        })
+
+    </script>
+    <!-- 第五題 -->
+    <div class="container">
+        <div class="my-2 p-2 bg-secondary-subtle rounded-4">
+            <div class="py-2">
+                <h2>5.設計一個函式 factorial(n){} 傳入參數 n 進去後可以顯示 n 階乘的結果
+                    比如 factorial(3)，會得到 6</h2>
+                <input type="text" class="form-control mb-2" id="input5" placeholder="輸入數字">
+                <input type="text" class="form-control" id="output5" placeholder="顯示上方數字 n 階乘的結果">
+            </div>
+        </div>
+    </div>
+    <script>
+        const input5 = document.querySelector("#input5");
+        const output5 = document.querySelector("#output5");
+
+        input5.addEventListener("input", function () {
+            function newNumber(n) {
+                let number = n
+                for (let i = 1; i < n; i++) {
+                    number = number * i;
+                }
+                return number;
+            }
+            output5.value = newNumber(input5.value);
+        })
+
+    </script>
+    <!-- 第六題 -->
+    <!-- pow 平方 -->
+    <div class="container">
+        <div class="my-2 p-2 bg-secondary-subtle rounded-4">
+            <div class="py-2">
+                <h2>6. 設計一個函式，當傳入一組數字陣列時，回傳數字的平方陣列
+                    比如
+                    let arr=[2,3,4];
+                    square(arr) 會回傳 [4,9,16] 這樣的陣列
+                </h2>
+                <input type="text" class="form-control mb-2" id="input6"
+                    placeholder="輸入數字:例如 1, 2, 3 ( 若要輸入一組以上數字,數字之間必須要有逗點 [ , ]  且必須是輸入數字否則無法運算 ) ">
+                <input type="text" class="form-control" id="output6" placeholder="顯示上列數字的平方值">
+            </div>
+        </div>
+    </div>
+    <script>
+        const input6 = document.querySelector("#input6");
+        const output6 = document.querySelector("#output6");
+
+        input6.addEventListener("input", function () {
+            let arr = input6.value.split(",");
+
+            function square(arr) {
+                let newArr = arr.map(function (num) {
+                    let newNum = Math.pow(num, 2);
+                    return newNum;
+                })
+                return newArr;
+            }
+            output6.value = square(arr);
+        })
+    </script>
+    <!-- 第七題 -->
+    <!-- none block 隱藏 顯示 -->
+    <div class="container">
+        <div class="my-2 p-2 bg-secondary-subtle rounded-4">
+            <h2>
+                7.製作點擊按鈕後，出現彈出視窗的效果，點擊關閉後結束彈出視窗。
+                (不是使用 alert，而是要自己用 html 元素做出彈出式視窗)
+            </h2>
+            <button id="openModel" class="btn btn-warning text-white">SHOW</button>
+            <div id="myModel" class="model">
+                <div class="model-content">
+                    <h3>是否確認？</h3>
+                    <span class="close" id="closeModel">關閉</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const model = document.querySelector("#myModel");
+        const btn = document.querySelector("#openModel");
+        const span = document.querySelector("#closeModel");
+
+        btn.onclick = function () {
+            model.style.display = "block";
+        }
+
+        span.onclick = function () {
+            model.style.display = "none";
+        }
+
+    </script>
+    <!-- 第八題 -->
+    <!-- 0728 上課 範例8換圖片類似 可以參考 -->
+    <div class="container">
+        <div class="my-2 p-2 bg-white rounded-4 text-decoration-none text-dark">
+            <h2>
+                8. 製作 tab UI，點擊 tab 切換到對應內容
+            </h2>
+            <div class="container">
+                <div class="wrapper">
+                    <div class="tabs d-flex justify-content-center">
+                        <a class="active" data-tab="home">Home</a>
+                        <a data-tab="about">About</a>
+                        <a data-tab="contact">Contact</a>
+                    </div>
+                    <hr>
+                    <div class="tab-content">
+                        <div id="home" class="active">
+                            This is home
+                        </div>
+                        <div id="about">
+                            About me
+                        </div>
+                        <div id="contact">
+                            Contact us
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const tabs = document.querySelectorAll('.tabs a');
+        const contents = document.querySelectorAll('.tab-content > div');
+
+        tabs.forEach(function (tab) {
+            tab.addEventListener('click', function () {
+                const tabName = this.getAttribute('data-tab');
+
+
+                tabs.forEach(function (t) {
+                    t.classList.remove('active');
+                });
+                contents.forEach(function (content) {
+                    content.classList.remove('active');
+                });
+
+
+
+                this.classList.add('active');
+                document.getElementById(tabName).classList.add('active');
+            });
+        });
+
+    </script>
+
+</body>
+
+</html>
